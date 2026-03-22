@@ -953,10 +953,10 @@ export default function App() {
       [alertId]: { ...prev[alertId], [custId]: { ...prev[alertId]?.[custId], [skuCode]: value } },
     }))
 
-  const [loadingKpis, setLoadingKpis] = useState(true)
-  const [loadingExc,  setLoadingExc]  = useState(true)
-  const [loadingFc,   setLoadingFc]   = useState(true)
-  const [loadingRisk, setLoadingRisk] = useState(true)
+  const [loadingKpis, setLoadingKpis] = useState(false)
+  const [loadingExc,  setLoadingExc]  = useState(false)
+  const [loadingFc,   setLoadingFc]   = useState(false)
+  const [loadingRisk, setLoadingRisk] = useState(false)
 
   const [errKpis,  setErrKpis]  = useState(null)
   const [errExc,   setErrExc]   = useState(null)
