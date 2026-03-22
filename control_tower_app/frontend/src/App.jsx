@@ -548,9 +548,6 @@ function AllocationEngine({ alert, finalAllocs, onAllocChange, onClose }) {
                     <th className="text-left px-3 py-2 font-medium">Vendor</th>
                     <th className="text-right px-3 py-2 font-medium">Orders Shipping</th>
                     <th className="text-right px-3 py-2 font-medium">End-of-Day Inventory</th>
-                    <th className="text-right px-3 py-2 font-medium">Safety Stock</th>
-                    <th className="text-right px-3 py-2 font-medium">Buffer vs Safety Stock</th>
-                    <th className="text-right px-4 py-2 font-medium">Suggested PO Qty</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-gray-50">
@@ -561,15 +558,6 @@ function AllocationEngine({ alert, finalAllocs, onAllocChange, onClose }) {
                     <td className="px-3 py-2 text-gray-400">—</td>
                     <td className="px-3 py-2 text-right text-gray-300">—</td>
                     <td className="px-3 py-2 text-right font-bold text-blue-700">{fmt(alert.availableSupply)} cases</td>
-                    <td className="px-3 py-2 text-right font-semibold text-orange-600">{fmt(safetyStock)} cases</td>
-                    <td className={`px-3 py-2 text-right font-bold ${
-                      alert.availableSupply - safetyStock < 0 ? 'text-red-600' :
-                      alert.availableSupply - safetyStock < safetyStock * 0.5 ? 'text-amber-600' : 'text-emerald-600'
-                    }`}>
-                      {alert.availableSupply - safetyStock >= 0 ? '+' : '−'}
-                      {fmt(Math.abs(alert.availableSupply - safetyStock))} cases
-                    </td>
-                    <td className="px-4 py-2 text-right text-gray-300">—</td>
                   </tr>
                   {timeline.map(row => {
                     const isStockout      = row.endInventory < 0
@@ -598,23 +586,6 @@ function AllocationEngine({ alert, finalAllocs, onAllocChange, onClose }) {
                           {isStockout && '⚠ '}
                           {fmt(Math.abs(row.endInventory))} cases
                           {isStockout && ' STOCKOUT'}
-                        </td>
-                        <td className="px-3 py-2 text-right text-orange-500 font-medium">
-                          {fmt(safetyStock)} cases
-                        </td>
-                        <td className={`px-3 py-2 text-right font-bold ${
-                          row.buffer < 0 ? 'text-red-600' : isLowBuffer ? 'text-amber-600' : 'text-emerald-600'
-                        }`}>
-                          {row.buffer >= 0
-                            ? <span>+{fmt(row.buffer)} cases</span>
-                            : <span>⚠ {fmt(Math.abs(row.buffer))} below</span>}
-                        </td>
-                        <td className="px-4 py-2 text-right">
-                          {row.buffer < 0
-                            ? <span className="font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
-                                {fmt(Math.ceil((safetyStock - row.endInventory) / 50) * 50)} cases
-                              </span>
-                            : <span className="text-gray-300">—</span>}
                         </td>
                       </tr>
                     )
