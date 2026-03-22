@@ -876,7 +876,7 @@ function FilterBar({ options, filters, onChange, onReset }) {
         <select value={filters.commodity} onChange={e => onChange('commodity', e.target.value)}
           className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand focus:ring-opacity-30 cursor-pointer">
           <option value="all">All Commodities</option>
-          {options.commodities.map(c => <option key={c} value={c}>{c}</option>)}
+          {(options.commodities ?? []).map(c => <option key={c} value={c}>{c}</option>)}
         </select>
       </div>
       <div className="flex items-center gap-1.5">
@@ -884,7 +884,7 @@ function FilterBar({ options, filters, onChange, onReset }) {
         <select value={filters.locationCode} onChange={e => onChange('locationCode', e.target.value)}
           className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand focus:ring-opacity-30 cursor-pointer">
           <option value="all">All Locations</option>
-          {options.locations.map(l => <option key={l} value={l}>{l}</option>)}
+          {(options.locations ?? []).map(l => <option key={l} value={l}>{l}</option>)}
         </select>
       </div>
       <div className="flex items-center gap-1.5">
