@@ -3,6 +3,6 @@
   "outputDirectory": "control_tower_app/frontend/dist",
   "installCommand": "echo skip",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/((?!api/).*)", "destination": "/index.html" }
   ]
 }

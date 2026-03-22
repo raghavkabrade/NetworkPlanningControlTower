@@ -1016,21 +1016,21 @@ export default function App() {
 
   const fetchExceptions = useCallback(async (params) => {
     setLoadingExc(true); setErrExc(null)
-    try { const { data } = await axios.get(`${API}/exceptions`, { params }); setExceptions(data) }
+    try { const { data } = await axios.get(`${API}/exceptions`, { params }); if (Array.isArray(data)) setExceptions(data) }
     catch (e) { setErrExc(e.message) }
     finally { setLoadingExc(false) }
   }, [])
 
   const fetchForecast = useCallback(async (params) => {
     setLoadingFc(true); setErrFc(null)
-    try { const { data } = await axios.get(`${API}/forecast`, { params }); setForecast(data) }
+    try { const { data } = await axios.get(`${API}/forecast`, { params }); if (Array.isArray(data)) setForecast(data) }
     catch (e) { setErrFc(e.message) }
     finally { setLoadingFc(false) }
   }, [])
 
   const fetchRiskTrace = useCallback(async (params) => {
     setLoadingRisk(true); setErrRisk(null)
-    try { const { data } = await axios.get(`${API}/risk-trace`, { params }); setRiskTrace(data) }
+    try { const { data } = await axios.get(`${API}/risk-trace`, { params }); if (Array.isArray(data)) setRiskTrace(data) }
     catch (e) { setErrRisk(e.message) }
     finally { setLoadingRisk(false) }
   }, [])
