@@ -1,0 +1,5 @@
+LocationCode,Commodity,AvailableSupply,TotalDemand,Shortage,FlatCutRate,Severity,AlertID,SnapshotDate
+MPL6-B,TOV,800,3400,2600,0.7647,Critical,MPL6-B-TOV,20260322
+MPL1,Beefsteak,400,1710,1310,0.7661,Critical,MPL1-Beefsteak,20260322
+MPL8,Campari,1200,1800,600,0.3333,High,MPL8-Campari,20260322
+MPLW,Beefsteak,700,900,200,0.2222,Medium,MPLW-Beefsteak,20260322

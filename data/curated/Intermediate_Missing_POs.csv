@@ -1,0 +1,7 @@
+PONumber,VendorName,LocationCode,DeliveryDate,ExpectedQty,ReceivedQty,ShortageQty,Commodities,FillRatePct,Severity
+PO-88234,Sunfresh Farms,MPL1,2026-03-18,480,0,480,Beefsteak,0.0,Low
+PO-88412,Sunfresh Farms,MPL1,2026-03-21,360,0,360,Beefsteak,0.0,Low
+PO-88301,Heritage Growers,MPL1,2026-03-20,240,0,240,Beefsteak,0.0,Low
+PO-88211,Sunrise Greenhouse,MPL6-B,2026-03-21,800,0,800,TOV,0.0,Medium
+PO-88190,Valley Fresh Growers,MPL6-B,2026-03-19,600,0,600,TOV,0.0,Medium
+PO-88520,Carlo Farms,MPL8,2026-03-20,300,0,300,Campari,0.0,Low

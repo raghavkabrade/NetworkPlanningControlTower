@@ -1,0 +1,32 @@
+# --- Claude / internal ---
+CLAUDE.md
+revert_to_mock.py
+skills/
+docs/
+powerbi/
+DataUnderstanding.md
+Questions_and_Answers.md
+
+# --- Raw source data (sensitive) ---
+data/raw/
+
+# --- Node ---
+node_modules/
+dist/
+.env
+.env.local
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+*.egg-info/
+
+# --- Jupyter checkpoints ---
+.ipynb_checkpoints/
+
+# --- OS ---
+.DS_Store
+Thumbs.db

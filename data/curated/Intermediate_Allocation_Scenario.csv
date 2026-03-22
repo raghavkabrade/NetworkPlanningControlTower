@@ -1,0 +1,12 @@
+Customer_Name,Priority_Tier,Original_Order_Qty,Suggested_Cut_Qty,Final_Allocated_Qty,Unit_Price,Flat_Allocated_Qty,Revenue_Saved,Fill_Rate_Pct,SKU,Total_Supply,Total_Demand,Shortage_Cases
+Metro Ontario Inc,Tier 1 - High Margin,450,0,450,24.0,177,6552.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Kroger National,Tier 1 - High Margin,500,0,500,24.0,197,7272.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Walmart Premium Account,Tier 1 - High Margin,250,0,250,24.0,99,3624.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Meijer Inc,Tier 2 - Standard,300,0,300,20.0,118,3640.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Sobeys Inc,Tier 2 - Standard,250,0,250,20.0,99,3020.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Loblaws Regional,Tier 2 - Standard,250,0,250,20.0,99,3020.0,100.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Discount Foods East,Tier 3 - Flexible/Spot,600,600,0,17.0,237,-4029.0,0.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Food Service Distributor A,Tier 3 - Flexible/Spot,700,700,0,17.0,276,-4692.0,0.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Promo / Secondary Buyer,Tier 3 - Flexible/Spot,500,500,0,17.0,197,-3349.0,0.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Spot Market Buyer,Tier 3 - Flexible/Spot,571,571,0,17.0,225,-3825.0,0.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
+Clearance Account,Tier 3 - Flexible/Spot,700,700,0,17.0,276,-4692.0,0.0,RTBB1015 - Beefsteak 15lb 39ct Beef No1,2000,5071,3071
