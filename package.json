@@ -1,0 +1,7 @@
+{
+  "name": "network-planning-control-tower",
+  "private": true,
+  "scripts": {
+    "build": "cd control_tower_app/frontend && npm install && npm run build"
+  }
+}
