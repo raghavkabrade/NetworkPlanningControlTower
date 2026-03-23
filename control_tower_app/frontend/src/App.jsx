@@ -1486,29 +1486,67 @@ VENDOR RISK TRACE: ${riskVendors} vendors → ${riskCustomers} customers | $${fm
   // ─────────────────────────────────────────────────────────────────────────
   // Render
   // ─────────────────────────────────────────────────────────────────────────
-  const [demoBannerDismissed, setDemoBannerDismissed] = useState(false)
+  return (
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center px-4">
+      <div className="max-w-lg w-full bg-white rounded-2xl shadow-sm border border-amber-200 overflow-hidden">
 
+        {/* Top colour bar */}
+        <div className="h-1.5 bg-amber-400 w-full" />
+
+        <div className="px-8 py-10 text-center">
+
+          {/* Icon */}
+          <div className="flex items-center justify-center w-14 h-14 rounded-full bg-amber-50 border border-amber-200 mx-auto mb-5">
+            <AlertTriangle className="w-7 h-7 text-amber-500" />
+          </div>
+
+          {/* Heading */}
+          <h1 className="text-xl font-bold text-gray-900 mb-1">Demo Access Only</h1>
+          <p className="text-sm text-gray-500 mb-6">Network Planning Control Tower · Mastronardi Produce</p>
+
+          {/* Notice box */}
+          <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 text-left mb-6">
+            <p className="text-sm text-amber-800 leading-relaxed">
+              This link was shared for a <strong>24-hour demo window</strong> only.
+              Access to the full dashboard is restricted and will be taken down after that window.
+            </p>
+          </div>
+
+          {/* What the tool does */}
+          <div className="text-left space-y-2 mb-8">
+            <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-3">What this tool does</p>
+            {[
+              'Real-time shortage alerts across the supply network',
+              'Tiered customer allocation engine to protect revenue',
+              '7-day demand & inventory outlook per SKU',
+              'Proactive pack schedule recommendations',
+              'AI-generated action plans and vendor escalation drafts',
+            ].map((item, i) => (
+              <div key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                <span className="mt-0.5 w-4 h-4 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-[10px] font-bold flex-shrink-0">{i + 1}</span>
+                {item}
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <p className="text-xs text-gray-400">
+            To request a fresh demo or permanent access, contact the project team directly.
+          </p>
+        </div>
+
+        {/* Footer */}
+        <div className="px-8 py-3 bg-gray-50 border-t border-gray-100 text-center">
+          <p className="text-[10px] text-gray-300">Network Planning Control Tower · v3.0</p>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function _AppFull() {
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
-
-      {/* DEMO ACCESS BANNER */}
-      {!demoBannerDismissed && (
-        <div className="bg-amber-50 border-b border-amber-200 px-6 py-2.5 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs text-amber-800">
-            <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
-            <span>
-              <strong>Demo Access:</strong> This link is active for <strong>24 hours only</strong> from the time it was shared.
-              To request a fresh demo or permanent access, contact the project team.
-            </span>
-          </div>
-          <button
-            onClick={() => setDemoBannerDismissed(true)}
-            className="flex-shrink-0 text-amber-500 hover:text-amber-700 transition-colors"
-          >
-            <X className="w-3.5 h-3.5" />
-          </button>
-        </div>
-      )}
 
       {/* HEADER */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">
