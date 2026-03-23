@@ -187,6 +187,115 @@ const MOCK_INBOUND_SCHEDULE = {
   ],
 }
 
+// ─────────────────────────────────────────────────────────────────────────────
+// PACK SCHEDULE ENGINE — Mock output from Python logic
+// Each row = one recommended pack run for an at-risk SKU
+// Fields mirror the final_schedule DataFrame produced by the Python engine
+// ─────────────────────────────────────────────────────────────────────────────
+const MOCK_PACK_SCHEDULE = [
+  {
+    id: 'PS-001',
+    skuCode: 'RTOV1132',
+    description: '6x3lb TOV TS No1',
+    commodity: 'TOV',
+    location: 'MPL6-B',
+    severity: 'Critical',
+    packDate: '2026-03-23',
+    shipDate: '2026-03-25',
+    suggestedPackQty: 660,
+    feasiblePackQty: 275,        // capped by raw material
+    rawLbsRequired: 13500,
+    availableLbs: 5610,
+    rawConstrained: true,
+    fillRatio: 0.42,
+    // 7-day rolling projection (date, forecast, expected inbound, projected inventory after pack)
+    projection: [
+      { date: '2026-03-23', forecast: 600,  inbound:   0, projectedInventory:  480, packQty: 275 },
+      { date: '2026-03-24', forecast:   0,  inbound: 300, projectedInventory:  755, packQty:   0 },
+      { date: '2026-03-25', forecast: 960,  inbound:   0, projectedInventory: -205, packQty:   0 },
+      { date: '2026-03-26', forecast:   0,  inbound:   0, projectedInventory: -205, packQty:   0 },
+      { date: '2026-03-27', forecast: 960,  inbound: 700, projectedInventory: -465, packQty:   0 },
+      { date: '2026-03-28', forecast:   0,  inbound:   0, projectedInventory: -465, packQty:   0 },
+      { date: '2026-03-29', forecast:   0,  inbound:   0, projectedInventory: -465, packQty:   0 },
+    ],
+  },
+  {
+    id: 'PS-002',
+    skuCode: 'RTCA1010',
+    description: 'Campari 8x2lb OTV No1',
+    commodity: 'Campari',
+    location: 'MPL8',
+    severity: 'Critical',
+    packDate: '2026-03-23',
+    shipDate: '2026-03-24',
+    suggestedPackQty: 480,
+    feasiblePackQty: 200,
+    rawLbsRequired: 9366,
+    availableLbs: 4000,
+    rawConstrained: true,
+    fillRatio: 0.43,
+    projection: [
+      { date: '2026-03-23', forecast:   0,  inbound:   0, projectedInventory:  200, packQty: 200 },
+      { date: '2026-03-24', forecast: 480,  inbound:   0, projectedInventory: -280, packQty:   0 },
+      { date: '2026-03-25', forecast: 360,  inbound: 150, projectedInventory: -490, packQty:   0 },
+      { date: '2026-03-26', forecast: 480,  inbound:   0, projectedInventory: -970, packQty:   0 },
+      { date: '2026-03-27', forecast:   0,  inbound:   0, projectedInventory: -970, packQty:   0 },
+      { date: '2026-03-28', forecast:   0,  inbound:   0, projectedInventory: -970, packQty:   0 },
+      { date: '2026-03-29', forecast:   0,  inbound:   0, projectedInventory: -970, packQty:   0 },
+    ],
+  },
+  {
+    id: 'PS-003',
+    skuCode: 'RTBB1015',
+    description: 'Beefsteak 15lb 39ct No1',
+    commodity: 'Beefsteak',
+    location: 'MPL1',
+    severity: 'High',
+    packDate: '2026-03-25',
+    shipDate: '2026-03-26',
+    suggestedPackQty: 350,
+    feasiblePackQty: 350,        // fully feasible — raw material available
+    rawLbsRequired: 6176,
+    availableLbs: 7000,
+    rawConstrained: false,
+    fillRatio: 1.0,
+    projection: [
+      { date: '2026-03-23', forecast:   0,  inbound:   0, projectedInventory:  320, packQty:   0 },
+      { date: '2026-03-24', forecast: 270,  inbound:   0, projectedInventory:   50, packQty:   0 },
+      { date: '2026-03-25', forecast:   0,  inbound: 400, projectedInventory:  800, packQty: 350 },
+      { date: '2026-03-26', forecast: 360,  inbound:   0, projectedInventory:  440, packQty:   0 },
+      { date: '2026-03-27', forecast: 180,  inbound:   0, projectedInventory:  260, packQty:   0 },
+      { date: '2026-03-28', forecast:   0,  inbound:   0, projectedInventory:  260, packQty:   0 },
+      { date: '2026-03-29', forecast:   0,  inbound:   0, projectedInventory:  260, packQty:   0 },
+    ],
+  },
+  {
+    id: 'PS-004',
+    skuCode: 'RTBB1023',
+    description: 'Beefsteak 15lb 25ct No1',
+    commodity: 'Beefsteak',
+    location: 'MPL1',
+    severity: 'Medium',
+    packDate: '2026-03-24',
+    shipDate: '2026-03-25',
+    suggestedPackQty: 150,
+    feasiblePackQty: 150,
+    rawLbsRequired: 2647,
+    availableLbs: 9000,
+    rawConstrained: false,
+    fillRatio: 1.0,
+    projection: [
+      { date: '2026-03-23', forecast:   0,  inbound:   0, projectedInventory:  150, packQty:   0 },
+      { date: '2026-03-24', forecast: 180,  inbound:   0, projectedInventory:  120, packQty: 150 },
+      { date: '2026-03-25', forecast:  90,  inbound: 200, projectedInventory:  230, packQty:   0 },
+      { date: '2026-03-26', forecast:   0,  inbound:   0, projectedInventory:  230, packQty:   0 },
+      { date: '2026-03-27', forecast:   0,  inbound:   0, projectedInventory:  230, packQty:   0 },
+      { date: '2026-03-28', forecast:   0,  inbound:   0, projectedInventory:  230, packQty:   0 },
+      { date: '2026-03-29', forecast:   0,  inbound:   0, projectedInventory:  230, packQty:   0 },
+    ],
+  },
+]
+
 // ── Allocation logic ───────────────────────────────────────────────────────────
 function getTier(price) {
   if (price >= 22) return 'Tier 1'
@@ -275,6 +384,289 @@ const ForecastTooltip = ({ active, payload, label }) => {
           {p.name}: <span className="font-medium">{fmt(p.value)}</span>
         </p>
       ))}
+    </div>
+  )
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+// PACK SCHEDULE ACTION CENTER
+// ─────────────────────────────────────────────────────────────────────────────
+function PackScheduleActionCenter() {
+  const [approved, setApproved]     = useState({})   // { [id]: true }
+  const [expanded, setExpanded]     = useState({})   // { [id]: true }
+  const [filterSev, setFilterSev]   = useState('all')
+
+  const toggleExpand = id => setExpanded(p => ({ ...p, [id]: !p[id] }))
+  const approve      = id => setApproved(p => ({ ...p, [id]: true }))
+
+  const sevOrder  = { Critical: 0, High: 1, Medium: 2, 'On Track': 3 }
+  const displayed = MOCK_PACK_SCHEDULE
+    .filter(r => filterSev === 'all' || r.severity === filterSev)
+    .sort((a, b) => (sevOrder[a.severity] ?? 9) - (sevOrder[b.severity] ?? 9))
+
+  const critCount = MOCK_PACK_SCHEDULE.filter(r => r.severity === 'Critical').length
+  const highCount = MOCK_PACK_SCHEDULE.filter(r => r.severity === 'High').length
+
+  const sevStyle = {
+    Critical: { badge: 'bg-red-100 text-red-700',    border: 'border-red-300',    row: 'bg-red-50'     },
+    High:     { badge: 'bg-orange-100 text-orange-700', border: 'border-orange-300', row: 'bg-orange-50' },
+    Medium:   { badge: 'bg-yellow-100 text-yellow-700', border: 'border-yellow-300', row: 'bg-yellow-50' },
+    'On Track':{ badge: 'bg-emerald-100 text-emerald-700', border: 'border-gray-200', row: '' },
+  }
+
+  return (
+    <div className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+
+      {/* ── Header ──────────────────────────────────────────────────────────── */}
+      <div className="px-5 py-4 border-b border-gray-100 flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <div className="flex items-center gap-2 mb-0.5">
+            <Layers className="w-4 h-4 text-brand" />
+            <h3 className="font-semibold text-gray-900 text-sm">Pack Schedule Action Center</h3>
+            <span className="text-[10px] bg-brand/10 text-brand px-2 py-0.5 rounded-full font-semibold">
+              7-Day Rolling Window
+            </span>
+          </div>
+          <p className="text-xs text-gray-400">
+            JIT pack recommendations — packing the day before shipment to prevent stockouts
+          </p>
+        </div>
+
+        {/* Summary badges + filter */}
+        <div className="flex items-center gap-2">
+          {critCount > 0 && (
+            <span className="text-xs bg-red-100 text-red-700 px-2.5 py-1 rounded-full font-semibold">
+              {critCount} Critical
+            </span>
+          )}
+          {highCount > 0 && (
+            <span className="text-xs bg-orange-100 text-orange-700 px-2.5 py-1 rounded-full font-semibold">
+              {highCount} High
+            </span>
+          )}
+          <select
+            value={filterSev}
+            onChange={e => setFilterSev(e.target.value)}
+            className="text-xs border border-gray-200 rounded-lg px-2.5 py-1.5 bg-white focus:outline-none focus:ring-2 focus:ring-brand/30"
+          >
+            <option value="all">All Severities</option>
+            <option value="Critical">Critical</option>
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+          </select>
+        </div>
+      </div>
+
+      {/* ── Legend ──────────────────────────────────────────────────────────── */}
+      <div className="flex items-center gap-4 px-5 py-2 bg-gray-50 border-b border-gray-100 text-[10px] text-gray-500">
+        <span className="flex items-center gap-1.5"><span className="w-3 h-1.5 rounded bg-purple-400 inline-block"/>Demand</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-1.5 rounded bg-emerald-400 inline-block"/>Expected Inbound</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-1.5 rounded bg-blue-400 inline-block"/>Pack Run</span>
+        <span className="flex items-center gap-1.5"><span className="w-3 h-1.5 rounded bg-red-300 inline-block"/>Projected Stockout</span>
+      </div>
+
+      {/* ── SKU Rows ────────────────────────────────────────────────────────── */}
+      <div className="divide-y divide-gray-100">
+        {displayed.map(run => {
+          const sty        = sevStyle[run.severity] ?? sevStyle.Medium
+          const isApproved = approved[run.id]
+          const isExpanded = expanded[run.id]
+          const rawShortPct = run.rawConstrained
+            ? Math.round((1 - run.fillRatio) * 100)
+            : 0
+
+          return (
+            <div key={run.id} className={`${isApproved ? 'opacity-60' : ''}`}>
+
+              {/* ── Summary row ─────────────────────────────────────────────── */}
+              <div
+                className={`
+                  grid grid-cols-[2fr_1fr_1fr_1fr_1fr_auto] gap-3 items-center
+                  px-5 py-3 hover:bg-gray-50/70 transition-colors cursor-pointer text-xs
+                `}
+                onClick={() => toggleExpand(run.id)}
+              >
+                {/* SKU info */}
+                <div className="flex items-center gap-2.5">
+                  {isExpanded
+                    ? <ChevronUp   className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />
+                    : <ChevronDown className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" />}
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-semibold ${sty.badge}`}>
+                        {run.severity}
+                      </span>
+                      <span className="font-mono text-[10px] text-gray-400">{run.skuCode}</span>
+                    </div>
+                    <p className="font-medium text-gray-800 mt-0.5 leading-tight">{run.description}</p>
+                    <p className="text-gray-400 text-[10px]">{run.location} · {run.commodity}</p>
+                  </div>
+                </div>
+
+                {/* Pack date */}
+                <div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wide">Pack Date</p>
+                  <p className="font-semibold text-gray-800">{run.packDate}</p>
+                  <p className="text-gray-400 text-[10px]">ships {run.shipDate}</p>
+                </div>
+
+                {/* Suggested qty */}
+                <div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wide">Suggested</p>
+                  <p className="font-bold text-gray-900">{fmt(run.suggestedPackQty)} cs</p>
+                </div>
+
+                {/* Feasible qty */}
+                <div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wide">Feasible</p>
+                  <p className={`font-bold ${run.rawConstrained ? 'text-red-600' : 'text-emerald-600'}`}>
+                    {fmt(run.feasiblePackQty)} cs
+                  </p>
+                  {run.rawConstrained && (
+                    <p className="text-[10px] text-red-500">−{rawShortPct}% raw short</p>
+                  )}
+                </div>
+
+                {/* Raw material bar */}
+                <div>
+                  <p className="text-gray-400 text-[10px] uppercase tracking-wide mb-1">Raw Material</p>
+                  <div className="w-full bg-gray-100 rounded-full h-1.5">
+                    <div
+                      className={`h-1.5 rounded-full ${run.rawConstrained ? 'bg-red-400' : 'bg-emerald-400'}`}
+                      style={{ width: `${Math.min(Math.round(run.fillRatio * 100), 100)}%` }}
+                    />
+                  </div>
+                  <p className="text-[10px] text-gray-400 mt-0.5">
+                    {fmt(run.availableLbs)} / {fmt(run.rawLbsRequired)} lbs
+                  </p>
+                </div>
+
+                {/* Action button */}
+                <div onClick={e => e.stopPropagation()}>
+                  {isApproved ? (
+                    <span className="flex items-center gap-1 text-[11px] text-emerald-600 font-semibold px-3 py-1.5 bg-emerald-50 rounded-lg border border-emerald-200">
+                      <Check className="w-3 h-3" /> Approved
+                    </span>
+                  ) : (
+                    <button
+                      onClick={() => approve(run.id)}
+                      className="flex items-center gap-1.5 text-[11px] font-semibold px-3 py-1.5 rounded-lg bg-brand text-white hover:bg-brand-dark transition-colors whitespace-nowrap shadow-sm"
+                    >
+                      <Zap className="w-3 h-3" />
+                      Approve Pack Run
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* ── Expanded 7-day projection ────────────────────────────────── */}
+              {isExpanded && (
+                <div className="px-5 pb-4 bg-gray-50/60 border-t border-dashed border-gray-200">
+
+                  {/* Raw material warning banner */}
+                  {run.rawConstrained && (
+                    <div className="flex items-start gap-2 bg-red-50 border border-red-200 rounded-lg px-3 py-2.5 mt-3 mb-3 text-xs">
+                      <AlertTriangle className="w-3.5 h-3.5 text-red-500 flex-shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-red-700">Raw Material Constraint</p>
+                        <p className="text-red-600">
+                          Only <strong>{fmt(run.availableLbs)} lbs</strong> of {run.commodity} bulk available on {run.packDate} —
+                          {' '}{fmt(run.rawLbsRequired)} lbs required.
+                          Feasible pack is prorated to <strong>{fmt(run.feasiblePackQty)} cases</strong> ({Math.round(run.fillRatio * 100)}% of suggested).
+                          Consider sourcing additional bulk or splitting across adjacent days.
+                        </p>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* 7-day table */}
+                  <div className="overflow-x-auto mt-3">
+                    <table className="w-full text-xs">
+                      <thead>
+                        <tr className="text-gray-400 uppercase tracking-wide text-[10px] border-b border-gray-200">
+                          <th className="text-left py-2 pr-3 font-medium w-28">Date</th>
+                          <th className="text-right py-2 px-3 font-medium">Demand Forecast</th>
+                          <th className="text-right py-2 px-3 font-medium">Expected Inbound</th>
+                          <th className="text-right py-2 px-3 font-medium">Pack Run</th>
+                          <th className="text-right py-2 px-3 font-medium">End Inventory</th>
+                          <th className="text-right py-2 pl-3 font-medium">Status</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-gray-100">
+                        {run.projection.map(day => {
+                          const isStockout  = day.projectedInventory < 0
+                          const isPackDay   = day.packQty > 0
+                          const isShipDay   = day.date === run.shipDate
+                          return (
+                            <tr
+                              key={day.date}
+                              className={`
+                                ${isStockout  ? 'bg-red-50'    : ''}
+                                ${isPackDay   ? 'bg-blue-50/60': ''}
+                              `}
+                            >
+                              <td className="py-2 pr-3 font-medium text-gray-700">
+                                {day.date}
+                                {isShipDay && (
+                                  <span className="ml-1.5 text-[9px] bg-purple-100 text-purple-600 px-1 py-0.5 rounded font-semibold">SHIP</span>
+                                )}
+                              </td>
+                              <td className="py-2 px-3 text-right">
+                                {day.forecast > 0
+                                  ? <span className="text-purple-600 font-semibold">−{fmt(day.forecast)}</span>
+                                  : <span className="text-gray-300">—</span>}
+                              </td>
+                              <td className="py-2 px-3 text-right">
+                                {day.inbound > 0
+                                  ? <span className="text-emerald-600 font-semibold">+{fmt(day.inbound)}</span>
+                                  : <span className="text-gray-300">—</span>}
+                              </td>
+                              <td className="py-2 px-3 text-right">
+                                {day.packQty > 0
+                                  ? (
+                                    <span className="text-blue-600 font-bold bg-blue-50 px-2 py-0.5 rounded border border-blue-200">
+                                      +{fmt(day.packQty)} pack
+                                    </span>
+                                  )
+                                  : <span className="text-gray-300">—</span>}
+                              </td>
+                              <td className={`py-2 px-3 text-right font-bold ${isStockout ? 'text-red-600' : 'text-gray-800'}`}>
+                                {isStockout && '⚠ '}
+                                {fmt(Math.abs(day.projectedInventory))}
+                                {isStockout && ' STOCKOUT'}
+                              </td>
+                              <td className="py-2 pl-3 text-right">
+                                {isStockout
+                                  ? <span className="text-[10px] font-semibold text-red-600 bg-red-100 px-1.5 py-0.5 rounded">At Risk</span>
+                                  : isPackDay
+                                    ? <span className="text-[10px] font-semibold text-blue-600 bg-blue-100 px-1.5 py-0.5 rounded">Pack Day</span>
+                                    : <span className="text-[10px] text-gray-400">—</span>}
+                              </td>
+                            </tr>
+                          )
+                        })}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+            </div>
+          )
+        })}
+      </div>
+
+      {/* ── Footer ──────────────────────────────────────────────────────────── */}
+      <div className="px-5 py-3 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
+        <p className="text-[10px] text-gray-400">
+          Projection logic: Opening Inventory + Expected Inbound − Demand Forecast · JIT: pack 1 day before ship ·
+          Raw material pool shared across commodity
+        </p>
+        <p className="text-[10px] text-gray-400">
+          {Object.keys(approved).length} of {MOCK_PACK_SCHEDULE.length} runs approved
+        </p>
+      </div>
+
     </div>
   )
 }
@@ -1187,6 +1579,25 @@ VENDOR RISK TRACE: ${riskVendors} vendors → ${riskCustomers} customers | $${fm
               />
             </section>
           )}
+
+          {/* ── STEP 4: PACK SCHEDULE ACTION CENTER ─────────────────────────── */}
+          <section>
+            <div className="flex items-center justify-between mb-3">
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand">Step 4</span>
+                  <ArrowRight className="w-3 h-3 text-gray-300" />
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-gray-400">Proactive Prevention</span>
+                </div>
+                <h2 className="font-semibold text-gray-900 flex items-center gap-2 mt-0.5">
+                  <Layers className="w-4 h-4 text-brand" />
+                  Pack Schedule Action Center
+                  <span className="text-xs font-normal text-gray-400">— Prevent tomorrow's shortage today</span>
+                </h2>
+              </div>
+            </div>
+            <PackScheduleActionCenter />
+          </section>
 
 
       </main>
