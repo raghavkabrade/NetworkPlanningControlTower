@@ -1486,8 +1486,29 @@ VENDOR RISK TRACE: ${riskVendors} vendors → ${riskCustomers} customers | $${fm
   // ─────────────────────────────────────────────────────────────────────────
   // Render
   // ─────────────────────────────────────────────────────────────────────────
+  const [demoBannerDismissed, setDemoBannerDismissed] = useState(false)
+
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col">
+
+      {/* DEMO ACCESS BANNER */}
+      {!demoBannerDismissed && (
+        <div className="bg-amber-50 border-b border-amber-200 px-6 py-2.5 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs text-amber-800">
+            <AlertTriangle className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
+            <span>
+              <strong>Demo Access:</strong> This link is active for <strong>24 hours only</strong> from the time it was shared.
+              To request a fresh demo or permanent access, contact the project team.
+            </span>
+          </div>
+          <button
+            onClick={() => setDemoBannerDismissed(true)}
+            className="flex-shrink-0 text-amber-500 hover:text-amber-700 transition-colors"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
 
       {/* HEADER */}
       <header className="bg-white border-b border-gray-200 sticky top-0 z-20 shadow-sm">

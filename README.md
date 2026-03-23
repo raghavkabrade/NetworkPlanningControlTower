@@ -1,5 +1,12 @@
 # Category Manager Analytics – Cloud + Power BI + Claude
 
+> **⚠️ Demo Access Notice**
+> The live demo link shared for this project is available for **24 hours only** from the time it was shared.
+> After that window the deployment will be taken down.
+> To request access or a fresh demo, reach out to the project team directly.
+
+---
+
 ## Overview
 This repository contains an end‑to‑end analytics solution that ingests operational planning data, models it into a governed star schema, publishes a Power BI semantic model, and enables a Claude‑based assistant to support category manager decision‑making.
 
